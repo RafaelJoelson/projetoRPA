@@ -2,6 +2,19 @@ import pyautogui
 import time
 import pandas as pd
 
+def escolher_navegador(navegador):
+    navegador_padrão = "Microsoft Edge"
+    option = input(f"Deseja alterar o navegador padrão ({navegador_padrão})?  S/N ").upper()
+    if option == 'S':
+        confirma = 'N'
+        while confirma == 'N':
+            navegador_escolhido = input("\nDigite o nome do Navegador: ")
+            confirma = input(f"\nNavegador {navegador_escolhido} selecionado. Confirma S/N? ")
+        return navegador_escolhido
+    else:
+        print("Navegador padrão mantido.")
+        return navegador_padrão
+
 def carregar_coordenadas():
     coordenadas = {}
     with open("coordenadas.txt", "r") as file:
@@ -40,7 +53,8 @@ def carregaCheckpoint():
 def salvaCheckpoint(ultima_linha_processada):
     with open("checkpoint.txt", "w") as f:
         f.write(str(ultima_linha_processada))
-def runCompleta(lote):
+def runCompleta(lote, navegador):
+    navegador = navegador
     coordenadas = carregar_coordenadas()
     tabela = pd.DataFrame()
     tabela = carregaTabela(tabela)
@@ -50,7 +64,7 @@ def runCompleta(lote):
     pyautogui.press('win')
     time.sleep(0.8)
     #2-Acessar Navegador Edge
-    pyautogui.write('Microsoft Edge')
+    pyautogui.write(navegador)
     time.sleep(0.8)
     pyautogui.press('enter')
     time.sleep(2)
@@ -97,7 +111,7 @@ def runCurta(lote):
         time.sleep(3)
         # 9-Click novo cadastro
         pyautogui.click(*coordenadas['click_3'])
-        time.sleep(0.8)
+        time.sleep(3)
         # 10 - Clicar no  ACS
         pyautogui.click(*coordenadas['click_4'])
         time.sleep(0.5)

@@ -7,7 +7,8 @@ print("||===========================================||\n")
 option = int(input("||   1 - Iniciar       2 - Configuração      ||\n"))
 if option == 1:
     tamanho_do_lote = tamanhoLote()
-    escolheRun(tamanho_do_lote)
+    navegador = escolher_navegador()
+    escolheRun(tamanho_do_lote, navegador)
 elif option == 2:
     # Chamando a função para iniciar a captura
     capturar_coordenadas()

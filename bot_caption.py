@@ -9,7 +9,6 @@ def limpar_coordenadas():
 
 def capturar_coordenadas():
     option = 'S'
-    limpar_coordenadas()
     print("Modo captura do cursor - Coordenadas resetadas\n")
     print("Escolha qual click você quer configurar\n")
     print(
@@ -31,8 +30,8 @@ def capturar_coordenadas():
         for key, value in coordenadas.items():
             file.write(f"{key}: {value[0]}, {value[1]}\n")
         # Aguarda até que o usuário pressione uma tecla antes de encerrar
-        print("Coordenadas dos clicks salvas com sucesso! Pressione qualquer tecla para sair", end='', flush=True)
-        msvcrt.getch()  # Aguarda pressionar uma tecla
+        input("Coordenadas dos clicks salvas com sucesso! Pressione qualquer tecla para sair")  # Aguarda pressionar uma tecla
+        exit(0)
 
 
 
