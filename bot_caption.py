@@ -15,7 +15,7 @@ def capturar_coordenadas():
         "| 1 - Click do Login       |\n| 2 - Click Módulo ACS     |\n| 3 - Click Novo Cadastro  |\n| 4 - Click no ACS         |\n| 5 - Click no Buscar nome      |\n")
     coordenadas = {}
     for i in range(5):
-        option = input("Pronto para configurar capturar o click: S/N: ").upper()
+        option = input("Pronto para configurar capturar o click: (S/N): ").upper()
         if option == 'S':
             print(f"Posicione o cursor para o clique {i + 1} e aguarde...")
             time.sleep(5)

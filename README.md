@@ -37,6 +37,12 @@ Explicação sobre os principais arquivos e diretórios no seu projeto.
     conda create --name pythonProject python=3.12
     conda activate pythonProject
     ```
+    Ou então:
+    
+    ```bash
+    python3 -m venv venv
+    venv\Scripts\activate
+    ```
 
 4. Instale as dependências:
 

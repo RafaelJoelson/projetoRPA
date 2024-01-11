@@ -2,15 +2,35 @@ import pyautogui
 import time
 import pandas as pd
 
-def escolher_navegador(navegador):
+
+def escolher_navegador():
+    navegadores_suportados = {
+        '1': "Microsoft Edge",
+        '2': "Google Chrome"
+    }
+
     navegador_padrão = "Microsoft Edge"
-    option = input(f"Deseja alterar o navegador padrão ({navegador_padrão})?  S/N ").upper()
+    option = input(f"Alterar o navegador padrão({navegador_padrão})? (S/N): ").upper()
+
     if option == 'S':
-        confirma = 'N'
-        while confirma == 'N':
-            navegador_escolhido = input("\nDigite o nome do Navegador: ")
-            confirma = input(f"\nNavegador {navegador_escolhido} selecionado. Confirma S/N? ")
-        return navegador_escolhido
+        while True:
+            print("Escolha um navegador:")
+            print("1 - Microsoft Edge")
+            print("2 - Google Chrome")
+
+            escolha = input("Digite o número do navegador desejado: ")
+
+            if escolha in navegadores_suportados:
+                navegador_escolhido = navegadores_suportados[escolha]
+                confirma = input(f"\nNavegador {navegador_escolhido} selecionado. Confirma? (S/N): ").upper()
+
+                if confirma == 'S':
+                    return navegador_escolhido
+                else:
+                    print("Escolha de navegador cancelada. Mantendo o navegador padrão.")
+                    return navegador_padrão
+            else:
+                print("Escolha inválida. Por favor, escolha um navegador suportado.")
     else:
         print("Navegador padrão mantido.")
         return navegador_padrão
@@ -26,7 +46,7 @@ def carregar_coordenadas():
 def tamanhoLote():
     tamanho_do_lote = 25
     print(f"Tamanho padrão do lote: {tamanho_do_lote}")
-    option = input("Deseja alterar? S/N: ").upper()
+    option = input("Deseja alterar? (S/N): ").upper()
     if option == 'S':
         try:
             tamanho_do_lote = int(input("Digite o tamanho desejado do lote: "))
@@ -53,8 +73,22 @@ def carregaCheckpoint():
 def salvaCheckpoint(ultima_linha_processada):
     with open("checkpoint.txt", "w") as f:
         f.write(str(ultima_linha_processada))
+def exibe_checkpoint():
+    ultima_linha_processada = carregaCheckpoint()
+    print(f"Último Checkpoint: {ultima_linha_processada}")
+
+
+def zera_checkpoint():
+    confirmacao = input("Deseja zerar o checkpoint? (S/N): ").upper()
+
+    if confirmacao == 'S':
+        salvaCheckpoint(0)
+        print("Checkpoint zerado.")
+    else:
+        print("Operação de zerar checkpoint cancelada.")
+
 def runCompleta(lote, navegador):
-    navegador = navegador
+    navegador_aberto = navegador
     coordenadas = carregar_coordenadas()
     tabela = pd.DataFrame()
     tabela = carregaTabela(tabela)
@@ -63,8 +97,8 @@ def runCompleta(lote, navegador):
     #1-Tecla Windows
     pyautogui.press('win')
     time.sleep(0.8)
-    #2-Acessar Navegador Edge
-    pyautogui.write(navegador)
+    #2-Acessar Navegador
+    pyautogui.write(navegador_aberto)
     time.sleep(0.8)
     pyautogui.press('enter')
     time.sleep(2)
@@ -150,15 +184,15 @@ def runCurta(lote):
 
     print(f"Pacientes Lançados: {min(lote, len(tabela) - ultima_linha_processada)}")
 
-def escolheRun(tamanho_do_lote):
-    option = int(input("Informe tipo de Execução:\n1 - Do Início\n2 - Nova Visita Domiciliar\n3 - SAIR\n"))
+def escolheRun(tamanho_do_lote, navegador):
+    option = int(input("Informe tipo de Execução:\n||1 - Do Início      2 - Nova Visita      3 - SAIR     ||\n>"))
     if option == 1:
         print("ATENÇÃO! AFASTE-SE DOS CONTROLES Á MENOS QUE QUEIRA INTERROMPER O PROGRAMA")
         time.sleep(3)
         for i in range(5):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
-        runCompleta(tamanho_do_lote)
+        runCompleta(tamanho_do_lote, navegador)
     elif option ==2:
         print("ATENÇÃO! CERTIFIQUE-SE QUE PÁGINA ESTÁ ABERTA!")
         time.sleep(3)
