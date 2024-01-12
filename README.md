@@ -53,7 +53,8 @@ Explicação sobre os principais arquivos e diretórios no seu projeto.
 5. Compile o executável:
 
     ```bash
-    pyinstaller bot_acs.py
+    pyinstaller --onefile --icon=bot_acs.ico bot_acs.py
+
     ```
 
 6. Configure os clicks do mouse conforme as imagens:

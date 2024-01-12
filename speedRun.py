@@ -109,7 +109,7 @@ def runCompleta(lote, navegador):
     #4-Click do Login
     time.sleep(2)
     pyautogui.click(*coordenadas['click_1'])
-    time.sleep(2)
+    time.sleep(3)
     #5-Click módulo ACS
     pyautogui.click(*coordenadas['click_2'])
     time.sleep(2)
@@ -129,12 +129,14 @@ def runCompleta(lote, navegador):
     pyautogui.press('enter')
     runCurta(lote)
 
+
 def runCurta(lote):
     coordenadas = carregar_coordenadas()
     tabela = pd.DataFrame()
     tabela = carregaTabela(tabela)
     ultima_linha_processada = carregaCheckpoint()
-    #Realiza a automação de acordo com o tamanho do lote informado.
+
+    # Realiza a automação de acordo com o tamanho do lote informado.
     for i in range(lote):
         # Verifica se ainda há linhas na tabela para processar
         if ultima_linha_processada >= len(tabela):
@@ -143,10 +145,12 @@ def runCurta(lote):
 
         linha = tabela.index[ultima_linha_processada]
         time.sleep(3)
+
         # 9-Click novo cadastro
         pyautogui.click(*coordenadas['click_3'])
         time.sleep(3)
-        # 10 - Clicar no  ACS
+
+        # 10 - Clicar no ACS
         pyautogui.click(*coordenadas['click_4'])
         time.sleep(0.5)
         for i in range(8):
@@ -157,9 +161,9 @@ def runCurta(lote):
         # 12 - Nome do paciente
         nome_paciente = tabela.loc[linha, 'nomePaciente']
         pyautogui.write(nome_paciente)
-        time.sleep(1)
-        pyautogui.press('enter')
         time.sleep(1.5)
+        pyautogui.press('enter')
+        time.sleep(3)
         pyautogui.press('tab')
         time.sleep(1.5)
         pyautogui.press('space')
