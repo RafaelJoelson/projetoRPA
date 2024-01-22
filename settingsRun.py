@@ -260,8 +260,8 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):
         pyautogui.press('tab')
         time.sleep(1.5)
         pyautogui.press('space')
-
-        # 11 - Clica no ícone do boneco
+        time.sleep(1)
+        # 11 - Clica em Buscar nome:
         pyautogui.click(*coordenadas['click_5'])
         time.sleep(1)
 
@@ -288,8 +288,8 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):
         ultima_linha_processada += 1
         salvaCheckpoint(ultima_linha_processada)
 
-        # Exibe a quantidade de pacientes lançados
-        print(f"Pacientes Lançados: {min(lote, len(tabela) - ultima_linha_processada)}")
+    # Exibe a quantidade de pacientes lançados
+    print(f"Pacientes Lançados: {min(lote, len(tabela) - ultima_linha_processada)}")
 
 
 def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):
