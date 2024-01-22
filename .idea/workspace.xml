@@ -6,17 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bca65df5-cca6-452a-bab3-d93bd9bce8d7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot_acs.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot_acs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Analysis-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/EXE-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PKG-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PYZ-00.pyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PYZ-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/bot_acs.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/bot_acs.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/xref-bot_acs.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/xref-bot_acs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkpoint.txt" beforeDir="false" afterPath="$PROJECT_DIR$/checkpoint.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speedRun.py" beforeDir="false" afterPath="$PROJECT_DIR$/settingsRun.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settingsRun.py" beforeDir="false" afterPath="$PROJECT_DIR$/settingsRun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +90,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/settingsRun.py</url>
-          <line>300</line>
+          <line>302</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

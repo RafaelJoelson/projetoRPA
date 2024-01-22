@@ -71,6 +71,7 @@ def configurar_visitas():
 
 def escolher_data_visita():
     data_bool = False
+    data_padrao = ""
     option = input("Deseja alterar a data? (S/N): ").upper()
 
     if option == 'S':
@@ -93,10 +94,11 @@ def escolher_data_visita():
         else:
             print("Escolha de data cancelada. Mantendo a data padrão.")
             data_bool = False
-            return data_bool
+            return data_bool, data_padrao
     else:
+        print("Data padrão mantida.")
         data_bool = False
-        return data_bool
+        return data_bool, data_padrao
 def carregar_coordenadas():
     coordenadas = {}
     with open("coordenadas.txt", "r") as file:
