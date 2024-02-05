@@ -1,7 +1,9 @@
 import pyautogui
 import time
 import pandas as pd
+import platform
 from datetime import datetime
+
 
 def escolher_navegador():
     navegadores_suportados = {
@@ -157,9 +159,18 @@ def runCompleta(lote, navegador,data_bool,data_visita,tipo_visita):
     tabela = pd.DataFrame()
     tabela = carregaTabela(tabela)
     ultima_linha_processada = carregaCheckpoint()
-    #Tempo de espera entre os comandos
-    #1-Tecla Windows
-    pyautogui.press('win')
+    # Verifica qual SO está rodando.
+    sistema_operacional = platform.system()
+    # Se for Windows, pressiona a tecla Windows
+    # Se for Ubuntu (Debian Based), pressiona Super+A
+    if sistema_operacional == 'Windows':
+        pyautogui.press('win')
+        print(sistema_operacional)
+    elif sistema_operacional == 'Linux':
+        pyautogui.press('win')
+        print(sistema_operacional)
+    else:
+        print("Sistema operacional não suportado.")
     time.sleep(0.8)
     #2-Acessar Navegador
     pyautogui.write(navegador_aberto)

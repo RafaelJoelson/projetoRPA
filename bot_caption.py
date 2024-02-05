@@ -1,6 +1,7 @@
 #Auxiliar para captura do cursor do mouse
 import pyautogui
 import time
+from bot_acs import menuPrincipal
 
 def limpar_coordenadas():
     with open("coordenadas.txt", "w") as file:
@@ -30,9 +31,9 @@ def capturar_coordenadas():
         for key, value in coordenadas.items():
             file.write(f"{key}: {value[0]}, {value[1]}\n")
         # Aguarda até que o usuário pressione uma tecla antes de encerrar
-        input("Coordenadas dos clicks salvas com sucesso! Pressione qualquer tecla para sair")  # Aguarda pressionar uma tecla
-        exit(0)
-
+    print("Coordenadas dos clicks salvas com sucesso! Pressione qualquer tecla para sair")  # Aguarda pressionar uma tecla
+    time.sleep(5)
+    menuPrincipal()
 
 
 

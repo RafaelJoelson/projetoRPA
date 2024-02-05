@@ -8,7 +8,7 @@ O projeto RPA visa automatizar tarefas específicas em um determinado sistema, p
 
 ## Tecnologias Utilizadas
 
-- Python 3.12
+- Python 3.10
 
 ## Estrutura do Projeto
 
@@ -40,7 +40,7 @@ O projeto RPA visa automatizar tarefas específicas em um determinado sistema, p
 3. **Crie e ative um ambiente virtual:**
    - Utilizando Anaconda:
      ```bash
-     conda create --name pythonProject python=3.12
+     conda create --name pythonProject python=3.10
      conda activate pythonProject
      ```
    - Utilizando venv:
@@ -60,7 +60,7 @@ O projeto RPA visa automatizar tarefas específicas em um determinado sistema, p
     ```
 
 6. **Configuração dos Clicks do Mouse:**
-    - Siga as instruções detalhadas no arquivo `tutorial.jpg`.
+    - Siga as instruções.
 
 7. **Inicie a Automação:**
     - Execute o executável gerado e escolha entre as opções 1 (Completa) ou 2 (Curta).
