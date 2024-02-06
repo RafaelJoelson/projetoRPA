@@ -4,15 +4,14 @@ import pandas as pd
 import platform
 from datetime import datetime
 
-
 def escolher_navegador():
     navegadores_suportados = {
         '1': "Microsoft Edge",
         '2': "Google Chrome"
     }
 
-    navegador_padrão = "Microsoft Edge"
-    option = input(f"Alterar o navegador padrão({navegador_padrão})? (S/N): ").upper()
+    navegador_padrao = "Microsoft Edge"
+    option = input(f"Alterar o navegador padrão({navegador_padrao})? (S/N): ").upper()
 
     if option == 'S':
         while True:
@@ -30,12 +29,12 @@ def escolher_navegador():
                     return navegador_escolhido
                 else:
                     print("Escolha de navegador cancelada. Mantendo o navegador padrão.")
-                    return navegador_padrão
+                    return navegador_padrao
             else:
                 print("Escolha inválida. Por favor, escolha um navegador suportado.")
     else:
         print("Navegador padrão mantido.")
-        return navegador_padrão
+        return navegador_padrao
 def configurar_visitas():
     visitas_suportadas = {
         '1': "Ori",
@@ -101,6 +100,8 @@ def escolher_data_visita():
         print("Data padrão mantida.")
         data_bool = False
         return data_bool, data_padrao
+
+
 def carregar_coordenadas():
     coordenadas = {}
     with open("coordenadas.txt", "r") as file:
@@ -109,6 +110,32 @@ def carregar_coordenadas():
             x, y = map(int, values.split(", "))
             coordenadas[key] = (x, y)
     return coordenadas
+
+def capturar_coordenadas():
+    print("Modo captura do cursor - Coordenadas resetadas\n")
+    print("Escolha qual click você quer configurar\n")
+    print("| 1 - Click do Login       |\n| 2 - Click Módulo ACS     |\n| 3 - Click Novo Cadastro  |\n| 4 - Click no ACS         |\n| 5 - Click no Buscar nome      |\n")
+    coordenadas = {}
+    for i in range(5):
+        option = input("Pronto para configurar capturar o click: (S/N): ").upper()
+        if option == 'S':
+            print(f"Posicione o cursor para o clique {i + 1} e aguarde...")
+            time.sleep(5)
+            coordenadas[f'click_{i + 1}'] = pyautogui.position()
+            print(f"Clique {i + 1} salvo com sucesso!")
+        else:
+            print("Operação abortada. Tente de novo")
+            exit(0)
+
+    # Salvando as coordenadas em um arquivo
+    with open("coordenadas.txt", "w") as file:
+        for key, value in coordenadas.items():
+            file.write(f"{key}: {value[0]}, {value[1]}\n")
+        # Aguarda até que o usuário pressione uma tecla antes de encerrar
+    print("Coordenadas dos clicks salvas com sucesso!")  # Aguarda pressionar uma tecla
+    time.sleep(5)
+
+
 def tamanhoLote():
     tamanho_do_lote = 25
     print(f"Tamanho padrão do lote: {tamanho_do_lote}")
@@ -154,6 +181,7 @@ def zera_checkpoint():
         print("Operação de zerar checkpoint cancelada.")
 
 def runCompleta(lote, navegador,data_bool,data_visita,tipo_visita):
+    pyautogui.sleep(0.5)
     navegador_aberto = navegador
     coordenadas = carregar_coordenadas()
     tabela = pd.DataFrame()
@@ -167,7 +195,7 @@ def runCompleta(lote, navegador,data_bool,data_visita,tipo_visita):
         pyautogui.press('win')
         print(sistema_operacional)
     elif sistema_operacional == 'Linux':
-        pyautogui.press('win')
+        pyautogui.hotkey('win','a')
         print(sistema_operacional)
     else:
         print("Sistema operacional não suportado.")

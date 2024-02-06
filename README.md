@@ -45,7 +45,7 @@ O projeto RPA visa automatizar tarefas específicas em um determinado sistema, p
      ```
    - Utilizando venv:
      ```bash
-     python3 -m venv venv
+     python -m venv venv
      venv\Scripts\activate
      ```
 

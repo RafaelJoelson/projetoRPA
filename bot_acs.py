@@ -1,6 +1,5 @@
 import logging
 from settingsRun import *
-from bot_caption import *
 
 def menuPrincipal():
     # Apresentação inicial
@@ -31,6 +30,7 @@ def menuPrincipal():
     elif option == 3:
         # Configuração dos cliques
         capturar_coordenadas()
+        menuPrincipal()
     else:
         # Opção inválida
         logging.error(f"Opção inválida: {option}. Encerrando aplicação...")

@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bca65df5-cca6-452a-bab3-d93bd9bce8d7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/botACS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/botACS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_acs.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot_acs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_caption.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/checkpoint.txt" beforeDir="false" afterPath="$PROJECT_DIR$/checkpoint.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coordenadas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/coordenadas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settingsRun.py" beforeDir="false" afterPath="$PROJECT_DIR$/settingsRun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,17 +34,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.bot_acs.executor&quot;: &quot;Run&quot;,
-    &quot;Python.speedRun.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rafae/OneDrive/Documentos/GitHub/projetoRPA&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.bot_acs.executor": "Run",
+    "Python.bot_caption.executor": "Run",
+    "Python.settingsRun.executor": "Run",
+    "Python.speedRun.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Rafael/Documents/GitHub/projetoRPA/bot_acs.py",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="bot_acs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="botACS" />
@@ -70,7 +80,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-7a29c1521ef0-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.298" />
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
       </set>
     </attachedChunks>
   </component>
@@ -90,7 +100,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/settingsRun.py</url>
-          <line>302</line>
+          <line>330</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

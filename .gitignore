@@ -2,3 +2,4 @@
 *.csv
 dist/bot_acs.exe
 dist/bot_acs
+venv
