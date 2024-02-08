@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bca65df5-cca6-452a-bab3-d93bd9bce8d7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot_acs.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot_acs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkpoint.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coordenadas.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/Tree-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Tree-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/Tree-01.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Tree-01.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/Tree-02.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Tree-02.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/bot_acs.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/bot_acs.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/warn-bot_acs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/warn-bot_acs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bot_acs/xref-bot_acs.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/xref-bot_acs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settingsRun.py" beforeDir="false" afterPath="$PROJECT_DIR$/settingsRun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,22 +47,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.bot_acs.executor": "Run",
-    "Python.bot_caption.executor": "Run",
-    "Python.settingsRun.executor": "Run",
-    "Python.speedRun.executor": "Run",
-    "Python.teste.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Rafael/Documents/GitHub/projetoRPA/bot_acs.py",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.bot_acs.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bot_caption.executor&quot;: &quot;Run&quot;,
+    &quot;Python.settingsRun.executor&quot;: &quot;Run&quot;,
+    &quot;Python.speedRun.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teste.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rafael/Documents/GitHub/projetoRPA/bot_acs.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="bot_acs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="botACS" />
@@ -118,13 +126,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/settingsRun.py</url>
-          <line>367</line>
-          <option name="timeStamp" value="1" />
+          <line>384</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/settingsRun.py</url>
-          <line>376</line>
-          <option name="timeStamp" value="2" />
+          <line>199</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

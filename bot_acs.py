@@ -16,7 +16,7 @@ def menuPrincipal():
         escolheRun(tamanho_do_lote=25,
                    navegador=ler_config()['navegador']['navegador_padrao'],
                    data_bool=False, data_visita="",
-                   tipo_visita="Orientação e Prevenção")
+                   tipo_visita="Orientacao")
         menuPrincipal()
 
     elif option == 2:

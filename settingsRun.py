@@ -5,7 +5,13 @@ import platform
 from datetime import datetime
 import configparser
 from pymsgbox import alert
+from datetime import datetime
 
+# Obter a data e o horário atuais
+agora = datetime.now()
+
+# Formatar a data e o horário como uma string legível
+data_hora = agora.strftime("%Y-%m-%d %H:%M:%S")
 
 def ler_config():# Carrega as configurações da automação.
     config = configparser.ConfigParser()
@@ -70,11 +76,11 @@ def configurar_visitas():
             # Verifica se a escolha é um número válido
             if escolha.isdigit() and escolha in ['1', '2', '3']:
                 if escolha == '1':
-                    visita_escolhida = 'Orientação e Prevenção'
+                    visita_escolhida = 'Orientacao'
                 elif escolha == '2':
-                    visita_escolhida = 'Ação educativa'
+                    visita_escolhida = 'Acao educativa'
                 else:
-                    visita_escolhida = 'Convite atividades coletivas/Campanha de Saúde'
+                    visita_escolhida = 'Convite atividades'
 
                 confirma = input(f"\nTipo de visita '{visita_escolhida}' selecionada. Confirma? (S/N): ").upper()
 
@@ -292,8 +298,8 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):# Executa a automação 
         # Obtém a linha a ser processada
         linha = tabela.index[ultima_linha_processada]
 
-        # Aguarda 3 segundos antes de prosseguir
-        time.sleep(3)
+        # Aguarda 4 segundos antes de prosseguir
+        time.sleep(4)
 
         # 9 - Clica em novo cadastro
         pyautogui.click(*coordenadas['click_3'])
@@ -347,6 +353,7 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):# Executa a automação 
 
         # 12 - Insere o tipo de visita
         pyautogui.write(tipo_visita)
+        time.sleep(1.5)
         pyautogui.press('enter')
 
         # Navega pelos campos seguintes
@@ -358,14 +365,15 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):# Executa a automação 
         # Fecha o ultimo pop-up
         pyautogui.press('tab')
         pyautogui.press('space')
-        time.sleep(3)
 
         # Atualiza o checkpoint
         ultima_linha_processada += 1
         salvaCheckpoint(ultima_linha_processada)
 
-    # Exibe a quantidade de pacientes lançados
-    print(f"Pacientes Lançados: {min(lote, len(tabela) - ultima_linha_processada)}")
+    # Abrir o arquivo de log no modo de anexação
+    with open('registro.log', 'a') as registro:
+        # Escrever a data e o horário seguido pelo número de visitas processadas
+        registro.write(f"{data_hora} - Visitas processadas: {min(lote, len(tabela) - ultima_linha_processada)}\n")
 
 
 def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):# Permite ao usuário escolher o tipo de execução do processo.
@@ -379,14 +387,14 @@ def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
         runCompleta(tamanho_do_lote, data_bool,data_visita,navegador,tipo_visita)
-    elif option ==2:
+    elif option == 2:
         print("ATENÇÃO! CERTIFIQUE-SE QUE PÁGINA ESTÁ ABERTA!")
         time.sleep(3)
         for i in range(5):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
         runCurta(tamanho_do_lote, data_bool,data_visita, tipo_visita)
-    elif option ==3:
+    elif option == 3:
         print("Voltando ao menu principal...")
         time.sleep(3)
     else:
