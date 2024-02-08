@@ -3,14 +3,23 @@ import time
 import pandas as pd
 import platform
 from datetime import datetime
+import configparser
+from pymsgbox import alert
+
+
+def ler_config():# Carrega as configurações da automação.
+    config = configparser.ConfigParser()
+    try:
+        # Tente ler o arquivo usando a codificação ISO-8859-1
+        config.read('config.ini', encoding='iso-8859-1')
+    except UnicodeDecodeError:
+        print("Erro ao ler o arquivo de configuração. Certifique-se de que o arquivo está em um formato suportado.")
+        return None
+    return config
 
 def escolher_navegador():
-    navegadores_suportados = {
-        '1': "Microsoft Edge",
-        '2': "Google Chrome"
-    }
-
-    navegador_padrao = "Microsoft Edge"
+    config = ler_config()
+    navegador_padrao = config['navegador']['navegador_padrao']
     option = input(f"Alterar o navegador padrão({navegador_padrao})? (S/N): ").upper()
 
     if option == 'S':
@@ -21,29 +30,33 @@ def escolher_navegador():
 
             escolha = input("Digite o número do navegador desejado: ")
 
-            if escolha in navegadores_suportados:
-                navegador_escolhido = navegadores_suportados[escolha]
+            # Verifica se a escolha é um número válido
+            if escolha.isdigit() and escolha in ['1', '2']:
+                navegador_escolhido = 'Microsoft Edge' if escolha == '1' else 'Google Chrome'
                 confirma = input(f"\nNavegador {navegador_escolhido} selecionado. Confirma? (S/N): ").upper()
 
                 if confirma == 'S':
+                    # Atualizar o arquivo INI com o navegador escolhido
+                    config['navegador']['navegador_padrao'] = navegador_escolhido
+                    with open('config.ini', 'w', encoding='iso-8859-1') as configfile:
+                        config.write(configfile)
+
                     return navegador_escolhido
                 else:
                     print("Escolha de navegador cancelada. Mantendo o navegador padrão.")
                     return navegador_padrao
             else:
                 print("Escolha inválida. Por favor, escolha um navegador suportado.")
+
     else:
         print("Navegador padrão mantido.")
         return navegador_padrao
-def configurar_visitas():
-    visitas_suportadas = {
-        '1': "Ori",
-        '2': "Ação edu",
-        '3': "Conv"
-    }
 
-    visita_padrao = "Ori"
-    option = input(f"Alterar a visita padrão({visita_padrao})? (S/N): ").upper()
+
+def configurar_visitas():
+    config = ler_config()
+    visita_padrao = config['visita']['visita_padrao']
+    option = input(f"Alterar a visita padrão ({visita_padrao})? (S/N): ").upper()
 
     if option == 'S':
         while True:
@@ -54,14 +67,26 @@ def configurar_visitas():
 
             escolha = input("Digite o número da visita desejada: ")
 
-            if escolha in visitas_suportadas:
-                visita_escolhida = visitas_suportadas[escolha]
+            # Verifica se a escolha é um número válido
+            if escolha.isdigit() and escolha in ['1', '2', '3']:
+                if escolha == '1':
+                    visita_escolhida = 'Orientação e Prevenção'
+                elif escolha == '2':
+                    visita_escolhida = 'Ação educativa'
+                else:
+                    visita_escolhida = 'Convite atividades coletivas/Campanha de Saúde'
+
                 confirma = input(f"\nTipo de visita '{visita_escolhida}' selecionada. Confirma? (S/N): ").upper()
 
                 if confirma == 'S':
+                    # Atualizar o arquivo INI com o tipo de visita escolhido
+                    config['visita']['visita_padrao'] = visita_escolhida
+                    with open('config.ini', 'w', encoding='iso-8859-1') as configfile:
+                        config.write(configfile)
+
                     return visita_escolhida
                 else:
-                    print("Escolha de navegador cancelada. Mantendo o navegador padrão.")
+                    print("Escolha de visita cancelada. Mantendo a visita padrão.")
                     return visita_padrao
             else:
                 print("Escolha inválida. Por favor, escolha uma visita suportada.")
@@ -70,7 +95,9 @@ def configurar_visitas():
         return visita_padrao
 
 
-def escolher_data_visita():
+
+
+def escolher_data_visita():# Permite ao usuário escolher uma data específica para a visita.
     data_bool = False
     data_padrao = ""
     option = input("Deseja alterar a data? (S/N): ").upper()
@@ -102,19 +129,18 @@ def escolher_data_visita():
         return data_bool, data_padrao
 
 
-def carregar_coordenadas():
+def carregar_coordenadas():# Carrega as coordenadas dos cliques salvos no arquivo de configuração.
+    config = ler_config()
     coordenadas = {}
-    with open("coordenadas.txt", "r") as file:
-        for line in file:
-            key, values = line.strip().split(": ")
-            x, y = map(int, values.split(", "))
-            coordenadas[key] = (x, y)
+    for key, value in config['coordenadas'].items():
+        x, y = map(int, value.split(","))
+        coordenadas[key] = (x, y)
     return coordenadas
 
-def capturar_coordenadas():
-    print("Modo captura do cursor - Coordenadas resetadas\n")
-    print("Escolha qual click você quer configurar\n")
-    print("| 1 - Click do Login       |\n| 2 - Click Módulo ACS     |\n| 3 - Click Novo Cadastro  |\n| 4 - Click no ACS         |\n| 5 - Click no Buscar nome      |\n")
+
+def capturar_coordenadas():# Captura as coordenadas dos cliques por meio da interação do usuário.
+    print("||                                   |Modo captura do cursor|                                   ||\n")
+    print("||                           Escolha qual click você quer configurar                            ||\n")
     coordenadas = {}
     for i in range(5):
         option = input("Pronto para configurar capturar o click: (S/N): ").upper()
@@ -122,21 +148,26 @@ def capturar_coordenadas():
             print(f"Posicione o cursor para o clique {i + 1} e aguarde...")
             time.sleep(5)
             coordenadas[f'click_{i + 1}'] = pyautogui.position()
-            print(f"Clique {i + 1} salvo com sucesso!")
+            # Exibe um alerta com a mensagem formatada
+            alert(text=f'Clique {i + 1} salvo com sucesso!', title='ACS BOT', button='OK')
         else:
             print("Operação abortada. Tente de novo")
             exit(0)
 
-    # Salvando as coordenadas em um arquivo
-    with open("coordenadas.txt", "w") as file:
-        for key, value in coordenadas.items():
-            file.write(f"{key}: {value[0]}, {value[1]}\n")
-        # Aguarda até que o usuário pressione uma tecla antes de encerrar
-    print("Coordenadas dos clicks salvas com sucesso!")  # Aguarda pressionar uma tecla
+    config = ler_config()
+    config['coordenadas'] = {}
+    for key, value in coordenadas.items():
+        x, y = value
+        config['coordenadas'][key] = f"{x},{y}"
+
+    with open('config.ini', 'w', encoding='iso-8859-1') as configfile:
+        config.write(configfile)
+
+    print("Coordenadas dos clicks salvas com sucesso!")  # Aguarda 5 segundos volta para o menu
     time.sleep(5)
 
 
-def tamanhoLote():
+def tamanhoLote():# Permite ao usuário definir o tamanho do lote de registros a ser processado.
     tamanho_do_lote = 25
     print(f"Tamanho padrão do lote: {tamanho_do_lote}")
     option = input("Deseja alterar? (S/N): ").upper()
@@ -151,27 +182,30 @@ def tamanhoLote():
     else:
         print(f"Lote definido para: {tamanho_do_lote}")
         return tamanho_do_lote
-def carregaTabela(tb):
+def carregaTabela(tb):# Carrega os dados da tabela a partir de um arquivo CSV.
     tb = pd.read_csv("tabelaNomes/RelatorioControleVisitas.csv")
     return tb
 
-def carregaCheckpoint():
+def carregaCheckpoint():# Carrega o último ponto de verificação (checkpoint) salvo.
+    config = ler_config()
     try:
-        with open("checkpoint.txt", "r") as f:
-            ultima_linha_processada = int(f.read().strip())
-    except FileNotFoundError:
+        ultima_linha_processada = int(config['checkpoint']['ultima_linha_processada'])
+    except KeyError:
         ultima_linha_processada = 0
     return ultima_linha_processada
 
-def salvaCheckpoint(ultima_linha_processada):
-    with open("checkpoint.txt", "w") as f:
-        f.write(str(ultima_linha_processada))
-def exibe_checkpoint():
+def salvaCheckpoint(ultima_linha_processada):# Salva o último ponto de verificação (checkpoint) processado.
+    config = ler_config()
+    config['checkpoint'] = {'ultima_linha_processada': str(ultima_linha_processada)}
+    with open('config.ini', 'w') as configfile:
+        config.write(configfile)
+
+def exibe_checkpoint():# Exibe o último ponto de verificação (checkpoint) processado.
     ultima_linha_processada = carregaCheckpoint()
     print(f"Último Checkpoint: {ultima_linha_processada}")
 
 
-def zera_checkpoint():
+def zera_checkpoint():# Zera o ponto de verificação (checkpoint) processado.
     confirmacao = input("Deseja zerar o checkpoint? (S/N): ").upper()
 
     if confirmacao == 'S':
@@ -180,9 +214,10 @@ def zera_checkpoint():
     else:
         print("Operação de zerar checkpoint cancelada.")
 
-def runCompleta(lote, navegador,data_bool,data_visita,tipo_visita):
+def runCompleta(lote, data_bool, data_visita, navegador, tipo_visita):# Executa a automação completa do processo.
+    config = ler_config()
+    url_padrao = config['url']['padrao']
     pyautogui.sleep(0.5)
-    navegador_aberto = navegador
     coordenadas = carregar_coordenadas()
     tabela = pd.DataFrame()
     tabela = carregaTabela(tabela)
@@ -201,12 +236,13 @@ def runCompleta(lote, navegador,data_bool,data_visita,tipo_visita):
         print("Sistema operacional não suportado.")
     time.sleep(0.8)
     #2-Acessar Navegador
-    pyautogui.write(navegador_aberto)
+    pyautogui.write(navegador)
+    print(navegador)
     time.sleep(0.8)
     pyautogui.press('enter')
     time.sleep(2)
-    #3-Ir para o site do sistema
-    pyautogui.write('https://sistemas.elosis.com.br/santacruz/login')
+    #3-Ir para o site do sistema (URL)
+    pyautogui.write(url_padrao)
     time.sleep(2)
     pyautogui.press('enter')
     #4-Click do Login
@@ -232,8 +268,8 @@ def runCompleta(lote, navegador,data_bool,data_visita,tipo_visita):
     pyautogui.press('enter')
     runCurta(lote, data_bool, data_visita, tipo_visita)
 
-
-def runCurta(lote, data_bool, data_visita, tipo_visita):
+def runCurta(lote, data_bool, data_visita, tipo_visita):# Executa a automação simplificada do processo.
+    config = ler_config()
     # Carrega as coordenadas para automação
     coordenadas = carregar_coordenadas()
 
@@ -296,6 +332,7 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):
         time.sleep(1.5)
         pyautogui.press('enter')
         time.sleep(3)
+        #Fecha o pop-up
         pyautogui.press('tab')
         time.sleep(1.5)
         pyautogui.press('space')
@@ -318,10 +355,10 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):
         pyautogui.press('enter')
         time.sleep(3)
 
-        # Navega pelos últimos campos
-        for i in range(2):
-            pyautogui.press('tab')
+        # Fecha o ultimo pop-up
+        pyautogui.press('tab')
         pyautogui.press('space')
+        time.sleep(3)
 
         # Atualiza o checkpoint
         ultima_linha_processada += 1
@@ -331,15 +368,17 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):
     print(f"Pacientes Lançados: {min(lote, len(tabela) - ultima_linha_processada)}")
 
 
-def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):
-    option = int(input("Informe tipo de Execução:\n||1 - Do Início      2 - Nova Visita      3 - SAIR     ||\n>"))
+def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):# Permite ao usuário escolher o tipo de execução do processo.
+    print(f"||  Tamanho do Lote: {tamanho_do_lote} | Tipo de visita: {tipo_visita} | Navegador: {navegador}    ||")
+    option = int(input("||Informe tipo de Execução:---------------------------------------------------------------------||"
+                       "\n||    1 - Do Início      2 - Nova Visita      3 - Voltar para o Menu principal       4 - Sair   ||\n>"))
     if option == 1:
         print("ATENÇÃO! AFASTE-SE DOS CONTROLES Á MENOS QUE QUEIRA INTERROMPER O PROGRAMA")
         time.sleep(3)
         for i in range(5):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
-        runCompleta(tamanho_do_lote, navegador,data_bool,data_visita,tipo_visita)
+        runCompleta(tamanho_do_lote, data_bool,data_visita,navegador,tipo_visita)
     elif option ==2:
         print("ATENÇÃO! CERTIFIQUE-SE QUE PÁGINA ESTÁ ABERTA!")
         time.sleep(3)
@@ -347,6 +386,10 @@ def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
         runCurta(tamanho_do_lote, data_bool,data_visita, tipo_visita)
+    elif option ==3:
+        print("Voltando ao menu principal...")
+        time.sleep(3)
     else:
-        print("Programa encerrado.")
-        exit(0)
+        print("Encerrando programa...")
+        time.sleep(3)
+        exit()
