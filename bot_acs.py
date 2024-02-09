@@ -4,7 +4,7 @@ from settingsRun import *
 def menuPrincipal():
     # Apresentação inicial
     print("||==============================================================================================||\n")
-    print("||                                   Bem-vindo(a) ao ACSbot version.6                           ||\n")
+    print("||                                   Bem-vindo(a) ao ACSbot version.7                           ||\n")
     print("||==============================================================================================||\n")
 
     # Opções de inicialização

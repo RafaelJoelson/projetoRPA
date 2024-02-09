@@ -7,12 +7,6 @@ import configparser
 from pymsgbox import alert
 from datetime import datetime
 
-# Obter a data e o horário atuais
-agora = datetime.now()
-
-# Formatar a data e o horário como uma string legível
-data_hora = agora.strftime("%Y-%m-%d %H:%M:%S")
-
 def ler_config():# Carrega as configurações da automação.
     config = configparser.ConfigParser()
     try:
@@ -221,25 +215,35 @@ def zera_checkpoint():# Zera o ponto de verificação (checkpoint) processado.
         print("Operação de zerar checkpoint cancelada.")
 
 def runCompleta(lote, data_bool, data_visita, navegador, tipo_visita):# Executa a automação completa do processo.
+    # Obter a data e o horário atuais
+    agora = datetime.now()
+    # Formatar a data e o horário como uma string legível
+    data_hora = agora.strftime("%Y-%m-%d %H:%M:%S")
+    #Carrega as configurações
     config = ler_config()
     url_padrao = config['url']['padrao']
+    #Define tempo entre os comandos do PyautoGui
     pyautogui.sleep(0.5)
     coordenadas = carregar_coordenadas()
     tabela = pd.DataFrame()
     tabela = carregaTabela(tabela)
     ultima_linha_processada = carregaCheckpoint()
+    #Inicio da automação
     # Verifica qual SO está rodando.
     sistema_operacional = platform.system()
     # Se for Windows, pressiona a tecla Windows
     # Se for Ubuntu (Debian Based), pressiona Super+A
     if sistema_operacional == 'Windows':
         pyautogui.press('win')
-        print(sistema_operacional)
+        with open('registro.log', 'a') as registro:
+            registro.write(f"{str(data_hora)} - Sistema operacional: {sistema_operacional}\n")
     elif sistema_operacional == 'Linux':
         pyautogui.hotkey('win','a')
-        print(sistema_operacional)
+        with open('registro.log', 'a') as registro:
+            registro.write(f"{str(data_hora)} - Sistema operacional: {sistema_operacional}\n")
     else:
-        print("Sistema operacional não suportado.")
+        with open('registro.log', 'a') as registro:
+           registro.write(f"{str(data_hora)} - Sistema operacional não suportado.\n")
     time.sleep(0.8)
     #2-Acessar Navegador
     pyautogui.write(navegador)
@@ -290,9 +294,14 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):# Executa a automação 
 
     # Realiza a automação de acordo com o tamanho do lote informado.
     for i in range(lote):
+        # Obter a data e o horário atuais
+        agora = datetime.now()
+        # Formatar a data e o horário como uma string legível
+        data_hora = agora.strftime("%Y-%m-%d %H:%M:%S")
         # Verifica se ainda há linhas na tabela para processar
         if ultima_linha_processada >= len(tabela):
-            print("Todas as linhas foram processadas.")
+            with open('registro.log','a') as registro:
+                registro.write(f"{str(data_hora)} - Todas as linhas foram processadas.\n")
             break
 
         # Obtém a linha a ser processada
@@ -369,12 +378,17 @@ def runCurta(lote, data_bool, data_visita, tipo_visita):# Executa a automação 
         # Atualiza o checkpoint
         ultima_linha_processada += 1
         salvaCheckpoint(ultima_linha_processada)
-
+        with open('registro.log', 'a') as registro:
+            registro.write(f"{str(data_hora)} - {nome_paciente} - {tipo_visita} - {ultima_linha_processada}\n")
     # Abrir o arquivo de log no modo de anexação
     with open('registro.log', 'a') as registro:
+        # Obter a data e o horário atuais
+        agora = datetime.now()
+        # Formatar a data e o horário como uma string legível
+        data_hora = agora.strftime("%Y-%m-%d %H:%M:%S")
         # Escrever a data e o horário seguido pelo número de visitas processadas
-        registro.write(f"{data_hora} - Visitas processadas: {min(lote, len(tabela) - ultima_linha_processada)}\n")
-
+        registro.write(f"{str(data_hora)} - =============================================== - Visitas processadas: {min(lote, len(tabela) - ultima_linha_processada)}\n")
+        exit(0)
 
 def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):# Permite ao usuário escolher o tipo de execução do processo.
     print(f"||  Tamanho do Lote: {tamanho_do_lote} | Tipo de visita: {tipo_visita} | Navegador: {navegador}    ||")
@@ -383,14 +397,14 @@ def escolheRun(tamanho_do_lote, navegador, data_bool, data_visita, tipo_visita):
     if option == 1:
         print("ATENÇÃO! AFASTE-SE DOS CONTROLES Á MENOS QUE QUEIRA INTERROMPER O PROGRAMA")
         time.sleep(3)
-        for i in range(5):
+        for i in range(-5):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
         runCompleta(tamanho_do_lote, data_bool,data_visita,navegador,tipo_visita)
     elif option == 2:
         print("ATENÇÃO! CERTIFIQUE-SE QUE PÁGINA ESTÁ ABERTA!")
         time.sleep(3)
-        for i in range(5):
+        for i in range(-5):
             print(f"O ACSbot iniciará em {i+1} segundos...")
             time.sleep(1)  # Aguarda por 5 segundos
         runCurta(tamanho_do_lote, data_bool,data_visita, tipo_visita)

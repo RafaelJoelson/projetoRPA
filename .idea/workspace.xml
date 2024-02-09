@@ -10,13 +10,7 @@
       <change beforePath="$PROJECT_DIR$/build/bot_acs/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/EXE-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/bot_acs/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PKG-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/bot_acs/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PYZ-00.pyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/PYZ-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/Tree-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Tree-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/Tree-01.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Tree-01.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/Tree-02.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/Tree-02.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/base_library.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/bot_acs/bot_acs.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/bot_acs.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bot_acs/warn-bot_acs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/warn-bot_acs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/bot_acs/xref-bot_acs.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/bot_acs/xref-bot_acs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settingsRun.py" beforeDir="false" afterPath="$PROJECT_DIR$/settingsRun.py" afterDir="false" />
@@ -126,12 +120,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/settingsRun.py</url>
-          <line>384</line>
+          <line>398</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/settingsRun.py</url>
-          <line>199</line>
+          <line>193</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
